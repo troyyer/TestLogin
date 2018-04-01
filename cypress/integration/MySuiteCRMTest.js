@@ -14,7 +14,7 @@ context('720p resolution', function () {
         cy.get('#user_name')
         .type('WILL')
         cy.get('#username_password')
-        .type('WILL')
+        .type('testER')
         cy.contains('Log In').click() 
         cy.contains('You must specify a valid username and password.')
 
@@ -30,8 +30,9 @@ context('720p resolution', function () {
         cy.contains('Log In').click() 
         cy.url()
             .should('include' , 'module=Home')
-
-        cy.contains('SUITECRM DASHBOARD')
+            cy.contains('SUITECRM DASHBOARD').should('be.visible')
+            cy.contains('My Activity Stream')
+            .should('be.visible')
 
     })
 })
