@@ -1,4 +1,5 @@
 {
+  "baseUrl": "https://demo.suiteondemand.com/",
   "projectId": "qmode9",
   "env": {
     "CYPRESS_RECORD_KEY": "b4d3b1a4-8a15-4868-8b16-68d8d9b3e492"
