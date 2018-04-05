@@ -15,7 +15,7 @@ context('Login step', function () {
             .should('be.visible')
     })
 
-
+//not figured out yet
     it('login directly thru request', function(){
         cy.request({
             method: 'POST',
@@ -45,21 +45,37 @@ context('Login step', function () {
                 cy.get('.moduleTitle')
                     .contains('Accounts')
                     .should('be.visible')
-                cy.get('.pageNumbers').first().should('contain','50')
+                cy.get('.pageNumbers').first()//.should('contain','50')
+                cy.get('.glyphicon-filter').first().click()
+                cy.get('#name_basic')
+                    .type('Kaos')
+                cy.get('#search_form_submit').click()
                 cy.get('table.table-responsive')
-                    .find('[class*=ListRowS1]').should('have.length', 20)
+                    .find('[class*=ListRowS1]')//.should('have.length', 20)
+                    .get('[scope="row"] > b > a').contains('Kaos Trading Ltd').click()
+                cy.get('#name').should('contain','Kaos Trading Ltd')
+                cy.get('#website').should('contain','www.sugardev.de')
+                cy.get('.actionmenulink').contains('View Accounts').click()
+                cy.get('.sugar_action_button.desktopOnly').first().click()
+                
+                cy.get('.nav.nav-tabs').find('a').should('be.visible')
+                    .contains('MORE INFORMATION').then(($tab)  => {
+                   cy.wrap($tab).click().should('have.class', '.active')
+                  })
+
                     .each(($el,index,$list) => {
-                        //loop in a table
+                        console.log($el, index, $list)
                     })
                 cy.get('table.table-responsive')
                     .find('[class*=ListRowS1]')
                     .should(($lis) => {
                         expect($lis).to.have.length(20)
-                        expect($lis.eq(0)).to.contain('EEE')
-                        expect($lis.eq(1)).to.contain('beans.beans')
-                        expect($lis.eq(4)).to.contain('Will Westin')
+                       // expect($lis.eq(0)).to.contain('EEE')
+                       // expect($lis.eq(1)).to.contain('beans.beans')
+                       // expect($lis.eq(4)).to.contain('Will Westin')
                        // expect($lis.eq(4)).to.contain('kid.info@example.net')
                         })
+                    
 
             })
 
