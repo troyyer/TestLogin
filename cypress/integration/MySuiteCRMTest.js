@@ -1,11 +1,8 @@
 describe('My First CRM Test', function() {
 
-context('720p resolution', function () {
+context('Login step', function () {
     beforeEach(function () {
-      // run these tests as if in a desktop
-      // browser with a 720p monitor
-        cy.viewport(1280, 720)
-        cy.visit('https://demo.suiteondemand.com/index.php')
+         cy.visit('https://demo.suiteondemand.com/index.php')
         cy.get('#user_name')
             .type('WILL')
         cy.get('#username_password')
